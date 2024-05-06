@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm">
+    <div>
+        <label for="email">email</label>
+        <input formControlName="email" type="email" id="email">
+        <div *ngIf="loginForm.controls['email'].invalid && 
+        (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+            <p *ngIf="loginForm.controls['email'].errors?.['required']">
+                Se requiere email
+            </p>
+            <p *ngIf="loginForm.controls['email'].errors?.['email']">
+                Email incorrecto
+            </p>
+        </div>
+    </div>  
+
+    <div>
+        <label for="password">contraseña</label>
+        <input formControlName="password" type="password" id="password">
+        <div *ngIf="loginForm.controls['password'].invalid && 
+        (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+            <p *ngIf="loginForm.controls['password'].errors?.['required']">
+                Se requiere contraseña
+            </p>
+            <p *ngIf="loginForm.controls['password'].errors?.['minLength']">
+                Minimo 4 caracteres
+            </p>
+            <p *ngIf="loginForm.controls['password'].errors?.['maxLength']">
+                Maximo 20 caracteres
+            </p>
+        </div>
+    </div>
+
+    <button [disabled]="loginForm.invalid" type="submit">Iniciar sesión</button>
+
+
+</form>
